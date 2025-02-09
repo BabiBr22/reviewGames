@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outra Página</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilo do vídeo de fundo */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .video-background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Overlay escuro no vídeo */
+    .video-background::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade aqui */
+    }
+
+    /* Estilo do conteúdo */
+    .conteudo {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20vh; /* Ajuste a margem superior conforme necessário */
+    }
+
+    .conteudo h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .conteudo p {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Container do vídeo -->
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="./img/128771-742066372.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos HTML5.
+    </video>
+  </div>
+
+  <!-- Conteúdo da página -->
+  <div class="conteudo">
+    <h1>Bem-vindo à outra página!</h1>
+    <p>Você foi redirecionado aqui ao clicar na imagem do SpaceBoss.</p>
+  </div>
+</body>
+</html>

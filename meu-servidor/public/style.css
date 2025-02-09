@@ -1,0 +1,73 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Remove barras de rolagem */
+  }
+  
+  /* Vídeo de fundo */
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Overlay escuro no vídeo */
+  .video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Conteúdo centralizado */
+  .conteudo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Ocupa toda a altura da tela */
+  }
+  
+  /* Estilo do link */
+  .imagem-link {
+    display: block; /* Garante que o link ocupe todo o espaço da imagem */
+    text-align: center; /* Centraliza o conteúdo do link */
+  }
+  
+  /* Estilo da imagem */
+  .imagem-link img {
+    width: 70%; /* Tamanho da imagem */
+    max-width: 800px; /* Tamanho máximo */
+    height: auto;
+    filter: brightness(0.85); /* Escurece a imagem */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Efeitos suaves */
+  }
+  
+  /* Efeito hover na imagem */
+  .imagem-link img:hover {
+    transform: scale(1.05); /* Aumenta um pouco o tamanho */
+    filter: brightness(1); /* Restaura o brilho ao passar o mouse */
+    cursor: pointer;
+  }
