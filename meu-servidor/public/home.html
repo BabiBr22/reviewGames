@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Games</title>
+    <link rel="stylesheet" href="homeStyle.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar">
+            <button class="search-button">Buscar</button>
+        </div>
+        <div class="user-actions">
+            <div class="user-profile">
+                <!-- Será preenchido via JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="top-games">
+            <div class="section-header">
+                <h2>TOP JOGOS</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-button prev">&#8249;</button>
+                <div class="carousel">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+                <button class="carousel-button next">&#8250;</button>
+            </div>
+        </section>
+
+        <div class="content-container">
+            <div class="main-content">
+                <div class="games-grid">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="top-rated">
+                    <h3>TOP BATE-PAPOS</h3>
+                    <ul class="top-rated-list">
+                        <!-- Preenchido via JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="your-chats">
+                    <h3>SEUS BATE-PAPOS</h3>
+                    <ul class="your-chats-list">
+                        <!-- Preenchido via JavaScript -->
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Modal para detalhes do jogo -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2></h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="game-details">
+                <div class="game-image-container">
+                    <img class="game-image" src="" alt="Game Image">
+                </div>
+                <div class="game-info-details">
+                    <p class="game-description"></p>
+                    <div class="game-metadata"></div>
+                </div>
+            </div>
+            <div class="review-section">
+                <h3>Reviews</h3>
+                <div id="reviewContent"></div>
+                <div class="reviews-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="homeScript.js"></script>
+</body>
+</html>

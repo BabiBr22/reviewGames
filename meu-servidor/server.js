@@ -1,31 +1,53 @@
-const express = require('express'); // Importa o módulo Express
-const path = require('path'); // Importa o módulo path para manipulação de caminhos
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const { conectarAoBanco } = require('./src/config/dbConfig');
+const { inicializarBancoDeDados } = require('./src/config/dbInit');
+const authController = require('./src/controllers/authController');
+const gameRoutes = require('./src/routes/gameRoutes');
+const reviewRoutes = require('./src/routes/reviewRoutes');
 
-const app = express(); // Cria uma instância do Express
-const port = process.env.PORT || 3000; // Define a porta (usa a variável de ambiente PORT ou 3000 como padrão)
+const app = express();
+const port = 3000;
 
-// Middleware para servir arquivos estáticos da pasta 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.static('public'));
 
-// Rota para a página inicial
+// Configurar rotas
+app.use('/api/games', gameRoutes);
+app.post('/api/registro', authController.registro);
+app.post('/api/login', authController.login);
+app.use('/api/reviews', reviewRoutes);
+
+// Rota para páginas HTML
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Middleware para tratar erros 404 (página não encontrada)
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+// Tratamento de erros
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Algo deu errado!' });
 });
 
-// Inicia o servidor e faz com que ele escute na porta definida
-const server = app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`); // Mensagem no console
-});
+// Iniciar servidor
+async function iniciarServidor() {
+    try {
+        await inicializarBancoDeDados();
+        app.listen(port, () => {
+            console.log(`Servidor rodando em http://localhost:${port}`);
+        });
+    } catch (erro) {
+        console.error('Erro ao iniciar servidor:', erro);
+        process.exit(1);
+    }
+}
 
-// Encerra o servidor corretamente ao pressionar Ctrl + C
-process.on('SIGINT', () => {
-  server.close(() => {
-    console.log('Servidor encerrado.');
-    process.exit(0);
-  });
-});
+iniciarServidor();
